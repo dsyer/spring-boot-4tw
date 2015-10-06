@@ -28,7 +28,6 @@ import org.eclipse.aether.resolution.VersionResolutionException;
 import org.eclipse.aether.resolution.VersionResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.boot.configurationmetadata.ConfigurationMetadataRepository;
 import org.springframework.boot.configurationmetadata.ConfigurationMetadataRepositoryJsonBuilder;
 import org.springframework.core.io.Resource;
@@ -59,7 +58,7 @@ public class ConfigurationMetadataRepositoryLoader {
 
 	public String resolveVersion(String version) {
 		try {
-			VersionResult versionResult = dependencyResolver
+			VersionResult versionResult = this.dependencyResolver
 					.resolveVersion("org.springframework.boot:spring-boot:" + version);
 			return versionResult.getVersion();
 		}
@@ -74,7 +73,7 @@ public class ConfigurationMetadataRepositoryLoader {
 			throws IOException {
 		String coordinates = moduleId + ":" + version;
 		try {
-			ArtifactResult artifactResult = dependencyResolver.resolveDependency(coordinates);
+			ArtifactResult artifactResult = this.dependencyResolver.resolveDependency(coordinates);
 			File file = artifactResult.getArtifact().getFile();
 			JarFile jarFile = new JarFile(file);
 			ZipEntry entry = jarFile.getEntry("META-INF/spring-configuration-metadata.json");
@@ -90,6 +89,7 @@ public class ConfigurationMetadataRepositoryLoader {
 		}
 		catch (ArtifactResolutionException e) {
 			if (mandatory) {
+				logger.error("Ouch", e);
 				throw new UnknownSpringBootVersion("Could not load '" + coordinates + "'", version);
 			}
 			logger.info("Ignoring '" + coordinates + " (not found)");

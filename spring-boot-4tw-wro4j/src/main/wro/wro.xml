@@ -1,0 +1,11 @@
+<groups xmlns="http://www.isdc.ro/wro">
+  <group name="assets">
+	<css>webjar:bootstrap/${bootstrap.version}/less/bootstrap.less</css>   
+    <css>file:${project.basedir}/src/main/wro/main.less</css>
+    <js>webjar:jquery/${jquery.version}/jquery.min.js</js>
+    <js>webjar:angularjs/${angularjs.version}/angular.min.js</js>
+    <js>webjar:angularjs/${angularjs.version}/angular-route.min.js</js>
+    <js>webjar:bootstrap/${bootstrap.version}/js/bootstrap.min.js</js>
+    <js>webjar:angular-ui-bootstrap/${angular-ui-bootstrap.version}/ui-bootstrap-tpls.min.js</js>
+   </group>
+</groups>

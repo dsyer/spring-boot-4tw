@@ -1,0 +1,64 @@
+body {
+    position: relative;
+}
+.table-metadata {
+    word-break: break-all;
+}
+
+.navbar-side.affix {
+    top:10px;
+}
+
+.navbar-side> .nav> li> a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.navbar-side> .nav> .active> a {
+
+    font-weight: 700;
+    border-left: 3px solid #337ab7;
+}
+
+.version-form {
+    margin: 30px 0px;
+}
+
+.version-form input[type=text], .checkbox {
+    margin-right: 2em;
+}
+
+.table>tbody>tr.add>td {
+    background-color: #dff0d8;
+}
+
+.table>tbody>tr.delete>td {
+    background-color: #f2dede;
+}
+
+.deprecated {
+    text-decoration: line-through
+}
+
+form p.bg-danger {
+    padding:15px;
+    margin-top: 15px;
+}
+
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
