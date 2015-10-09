@@ -7,6 +7,20 @@
 
 Boot version endpoints allow you to compare `@ConfigurationProperties` metadata between Spring Boot versions.
 
+=== Versions: /springboot/versions
+
+Lists all known versions of Spring Boot.
+
+Example curl request:
+include::{generated}/versions/curl-request.adoc[]
+
+Example HTTP request: [small]##link:#{idprefix}versions_springboot_versions[icon:external-link[role="silver"]]##
+include::{generated}/versions/http-request.adoc[]
+
+Example HTTP response:
+include::{generated}/versions/http-response.adoc[]
+
+
 === Version Diffs: /diff/{from}/{to}
 
 Compares two versions of Spring Boot, listing all the changed configuration properties.
@@ -14,7 +28,7 @@ Compares two versions of Spring Boot, listing all the changed configuration prop
 Example curl request:
 include::{generated}/valid/curl-request.adoc[]
 
-Example HTTP request: [small]##link:../logfile[icon:external-link[role="silver"]]##
+Example HTTP request: [small]##link:#{idprefix}version_diffs_diff_from_to[icon:external-link[role="silver"]]##
 include::{generated}/valid/http-request.adoc[]
 
 Example HTTP response:
@@ -25,7 +39,7 @@ If you send an invalid version you will get a 400:
 Example invalid curl request:
 include::{generated}/from-invalid/curl-request.adoc[]
 
-Example invalid HTTP request: [small]##link:../logfile[icon:external-link[role="silver"]]##
+Example invalid HTTP request: [small]##link:#{idprefix}version_diffs_diff_from_to[icon:external-link[role="silver"]]##
 include::{generated}/from-invalid/http-request.adoc[]
 
 Example invalid HTTP response:

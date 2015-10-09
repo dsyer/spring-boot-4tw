@@ -89,6 +89,13 @@ public class DiffMetadataControllerTest {
 				.andDo(document("valid"));
 	}
 
+	@Test
+	public void versions() throws Exception {
+		mockMvc.perform(get("/springboot/versions").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().is(200))
+				.andDo(document("versions"));
+	}
+
 	@Configuration
 	static class MockConfiguration {
 
