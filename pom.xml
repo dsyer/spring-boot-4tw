@@ -107,6 +107,9 @@
 							</goals>
 						</execution>
 					</executions>
+					<configuration>
+						<mainClass>${start-class}</mainClass>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.cloudfoundry</groupId>

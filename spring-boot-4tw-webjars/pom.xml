@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -11,14 +12,14 @@
 	<artifactId>spring-boot-4tw-webjars</artifactId>
 	<name>spring-boot-4tw-webjars</name>
 
+	<properties>
+		<start-class>demo.config.Application</start-class>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -75,9 +76,23 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework.restdocs</groupId>
+			<artifactId>spring-restdocs-mockmvc</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jetty</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
 		</dependency>
 	</dependencies>
 
@@ -96,6 +111,49 @@
 						<SPRING_PROFILES_ACTIVE>production</SPRING_PROFILES_ACTIVE>
 					</env>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.asciidoctor</groupId>
+				<artifactId>asciidoctor-maven-plugin</artifactId>
+				<version>1.5.2</version>
+				<executions>
+					<execution>
+						<id>generate-docs</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>process-asciidoc</goal>
+						</goals>
+						<configuration>
+							<backend>html</backend>
+							<doctype>book</doctype>
+							<sourceDocumentName>index.adoc</sourceDocumentName>
+							<attributes>
+								<generated>${project.build.directory}/generated-snippets</generated>
+								<docs>${project.build.directory}/../src/main/asciidoc</docs>
+							</attributes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.outputDirectory}/META-INF/resources/api-docs</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.build.directory}/generated-docs</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

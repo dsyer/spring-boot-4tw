@@ -1,0 +1,32 @@
+= Spring Boot Version Endpoints
+:toc: left
+:idprefix: spring_boot_version_
+:sectanchors:
+:icons: font
+:last-update-label!:
+
+Boot version endpoints allow you to compare `@ConfigurationProperties` metadata between Spring Boot versions.
+
+=== Version Diffs: /diff/{from}/{to}
+
+Compares two versions of Spring Boot, listing all the changed configuration properties.
+
+Example curl request:
+include::{generated}/valid/curl-request.adoc[]
+
+Example HTTP request: [small]##link:../logfile[icon:external-link[role="silver"]]##
+include::{generated}/valid/http-request.adoc[]
+
+Example HTTP response:
+include::{generated}/valid/http-response.adoc[]
+
+If you send an invalid version you will get a 400:
+
+Example invalid curl request:
+include::{generated}/from-invalid/curl-request.adoc[]
+
+Example invalid HTTP request: [small]##link:../logfile[icon:external-link[role="silver"]]##
+include::{generated}/from-invalid/http-request.adoc[]
+
+Example invalid HTTP response:
+include::{generated}/from-invalid/http-response.adoc[]
